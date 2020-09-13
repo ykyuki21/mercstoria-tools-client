@@ -1,0 +1,103 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Mercstoria Tools
+  description: Provide convenience tool of Mercstoria
+  contact:
+    name: yuki
+servers:
+  - url: 'http://127.0.0.1:3100'
+    description: Mock
+paths:
+  /units:
+    get:
+      summary: List all units
+      operationId: listUnits
+      tags:
+        - Unit
+      parameters: []
+      responses:
+        '200':
+          description: A paged array of units
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Unit'
+      description: Get unit list
+  '/units/{unitId}':
+    get:
+      summary: Info for a specific unit
+      operationId: showUnitById
+      tags:
+        - Unit
+      parameters:
+        - name: unitId
+          in: path
+          required: true
+          description: The id of the unit to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Get unit detail
+components:
+  schemas:
+    Unit:
+      title: Unit
+      type: object
+      x-tags:
+        - Unit
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        name:
+          type: string
+        fullName:
+          type: string
+        rarity:
+          type: integer
+          minimum: 1
+          maximum: 5
+          example: 5
+          format: int32
+        element:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 5
+          example: 5
+        weapon:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 7
+      required:
+        - id
+        - name
+        - fullName
+        - rarity
+        - element
+        - weapon
+    Error:
+      title: Error
+      type: object
+      properties:
+        id:
+          type: string
+tags:
+  - name: Unit
