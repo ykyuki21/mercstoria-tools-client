@@ -84,9 +84,9 @@ type UnitResponse = {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch("http://localhost:3000/units").then<
-    UnitResponse
-  >((response) => {
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_API_HOST + "/units"
+  ).then<UnitResponse>((response) => {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
