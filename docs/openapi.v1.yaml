@@ -23,9 +23,18 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Unit'
+                type: object
+                properties:
+                  units:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Unit'
+                required:
+                  - units
+            application/xml:
+              schema:
+                type: object
+                properties: {}
       description: Get unit list
   '/units/{unitId}':
     get:
