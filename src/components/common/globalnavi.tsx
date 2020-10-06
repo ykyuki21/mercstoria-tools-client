@@ -1,9 +1,12 @@
 import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
 import MenuIcon from "@material-ui/icons/Menu";
 import Logo from "./logo";
 
@@ -16,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-  },
-  login: {
-    marginLeft: "auto",
   },
 }));
 
@@ -38,11 +38,21 @@ export default function GlobalNavi() {
             <MenuIcon />
           </IconButton>
           <Logo />
-          <Button className={classes.login} color="inherit">
-            Login
-          </Button>
+          <Menu>
+            <Link href="/units">
+              <MenuItem>
+                <a>ユニット一覧</a>
+              </MenuItem>
+            </Link>
+            <Button color="inherit">Login</Button>
+          </Menu>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+const Menu = styled.div`
+  margin-left: auto;
+  display: flex;
+`;
