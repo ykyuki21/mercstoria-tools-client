@@ -3,6 +3,8 @@ export type Unit = {
   name: string
   fullName: string
   rarity: number
-  element: number
+  element: Element
   weapon: number
 }
+
+export type Element = "fire" | "water" | "wind" | "light" | "dark"

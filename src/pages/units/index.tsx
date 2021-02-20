@@ -13,7 +13,8 @@ import {
   Paper,
 } from "@material-ui/core";
 import { Favorite, FavoriteBorder } from "@material-ui/icons";
-import type { Unit } from "~/interfaces/unit";
+import type { Unit, Element } from "~/interfaces/unit";
+import styled, { css } from "styled-components";
 
 const useStyles = makeStyles({
   container: {
@@ -30,7 +31,6 @@ type Props = {
 
 const Units: NextPage<Props> = (props) => {
   const classes = useStyles();
-
   return (
     <Container className={classes.container}>
       <TableContainer component={Paper}>
@@ -53,7 +53,7 @@ const Units: NextPage<Props> = (props) => {
           </TableHead>
           <TableBody>
             {props.units.map((unit) => (
-              <TableRow key={unit.id}>
+              <StyledTableRow key={unit.id} element={unit.element}>
                 <TableCell align="center" padding="checkbox">
                   <Checkbox
                     icon={<FavoriteBorder />}
@@ -70,7 +70,7 @@ const Units: NextPage<Props> = (props) => {
                   {unit.name}
                 </TableCell>
                 <TableCell align="right">{unit.element}</TableCell>
-              </TableRow>
+              </StyledTableRow>
             ))}
           </TableBody>
         </Table>
@@ -78,6 +78,22 @@ const Units: NextPage<Props> = (props) => {
     </Container>
   );
 };
+
+const StyledTableRow = styled(TableRow)<{ element: Element }>`
+  ${({ element }) => {
+
+    switch (element) {
+      case "fire":
+        return css`
+          background-color: red;
+        `
+      default:
+        return css`
+          background-color: blue;
+        `
+      }
+  }}
+`
 
 type UnitResponse = {
   units: Unit[];
