@@ -1,5 +1,12 @@
 {
+  "css.validate": false,
+  "scss.validate": false,
+
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelintt": true,
+  },
   "[javascript]": {
     "editor.formatOnSave": true
   },
