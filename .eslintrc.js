@@ -7,9 +7,9 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'airbnb/hooks',
-    // 'plugin:import/errors',
-    // 'plugin:import/warnings',
-    // 'plugin:import/typescript',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'prettier',
@@ -38,7 +38,7 @@ module.exports = {
   rules: {
     // occur error in `import React from 'react'` with react-scripts 4.0.1
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error', {variables: false}],
+    '@typescript-eslint/no-use-before-define': ['error', { variables: false }],
     'lines-between-class-members': [
       'error',
       'always',
@@ -100,7 +100,7 @@ module.exports = {
         html: 'enforce',
         custom: 'enforce',
         explicitSpread: 'ignore',
-        exceptions: ["App", "Component"]
+        exceptions: ['App', 'Component'],
       },
     ],
     'react/react-in-jsx-scope': 'off',
