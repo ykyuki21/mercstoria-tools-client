@@ -9,7 +9,9 @@ const Title = styled.h1`
 const Home = (): JSX.Element => (
   <>
     <Title>My page</Title>
-    <Button variant="contained" color="primary">button</Button>
+    <Button variant="contained" color="primary">
+      button
+    </Button>
   </>
 );
 
