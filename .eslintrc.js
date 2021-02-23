@@ -100,10 +100,10 @@ module.exports = {
         html: 'enforce',
         custom: 'enforce',
         explicitSpread: 'ignore',
+        exceptions: ["App", "Component"]
       },
     ],
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-props-no-spreading': 'off',
   },
   overrides: [
     {
