@@ -1,6 +1,6 @@
-import React from "react";
-import { NextPage, GetStaticProps } from "next";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { NextPage, GetStaticProps } from 'next';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
   Checkbox,
@@ -11,14 +11,14 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from "@material-ui/core";
-import { Favorite, FavoriteBorder } from "@material-ui/icons";
-import type { Unit, Element } from "~/interfaces/unit";
-import styled, { css } from "styled-components";
+} from '@material-ui/core';
+import { Favorite, FavoriteBorder } from '@material-ui/icons';
+import styled, { css } from 'styled-components';
+import type { Unit, Element } from '~/interfaces/unit';
 
 const useStyles = makeStyles({
   container: {
-    padding: "20px 0",
+    padding: '20px 0',
   },
   table: {
     minWidth: 375,
@@ -31,6 +31,8 @@ type Props = {
 
 const Units: NextPage<Props> = (props) => {
   const classes = useStyles();
+  const { units } = props;
+
   return (
     <Container className={classes.container}>
       <TableContainer component={Paper}>
@@ -52,7 +54,7 @@ const Units: NextPage<Props> = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.units.map((unit) => (
+            {units.map((unit) => (
               <StyledTableRow key={unit.id} element={unit.element}>
                 <TableCell align="center" padding="checkbox">
                   <Checkbox
@@ -81,19 +83,18 @@ const Units: NextPage<Props> = (props) => {
 
 const StyledTableRow = styled(TableRow)<{ element: Element }>`
   ${({ element }) => {
-
     switch (element) {
-      case "fire":
+      case 'fire':
         return css`
           background-color: red;
-        `
+        `;
       default:
         return css`
           background-color: blue;
-        `
-      }
+        `;
+    }
   }}
-`
+`;
 
 type UnitResponse = {
   units: Unit[];
@@ -101,12 +102,13 @@ type UnitResponse = {
 
 export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch(
-    process.env.NEXT_PUBLIC_API_HOST + "/units"
-  ).then<UnitResponse>((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    `${process.env.NEXT_PUBLIC_API_HOST ?? ''}/units`,
+  ).then<UnitResponse>((res) => {
+    if (!res.ok) {
+      throw new Error(res.statusText);
     }
-    return response.json();
+
+    return res.json();
   });
 
   return {

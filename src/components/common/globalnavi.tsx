@@ -1,14 +1,14 @@
-import React from "react";
-import Link from "next/link";
-import styled from "styled-components";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuIcon from "@material-ui/icons/Menu";
-import Logo from "./logo";
+import React from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuIcon from '@material-ui/icons/Menu';
+import Logo from './logo';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GlobalNavi() {
+const GlobalNavi = (): JSX.Element => {
   const classes = useStyles();
 
   return (
@@ -41,7 +41,7 @@ export default function GlobalNavi() {
           <Menu>
             <Link href="/units">
               <MenuItem>
-                <a>ユニット一覧</a>
+                <span>ユニット一覧</span>
               </MenuItem>
             </Link>
             <Button color="inherit">Login</Button>
@@ -50,9 +50,11 @@ export default function GlobalNavi() {
       </AppBar>
     </div>
   );
-}
+};
 
 const Menu = styled.div`
   margin-left: auto;
   display: flex;
 `;
+
+export default GlobalNavi;
