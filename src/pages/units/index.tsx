@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage, GetStaticProps } from 'next';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
@@ -55,24 +56,26 @@ const Units: NextPage<Props> = (props) => {
           </TableHead>
           <TableBody>
             {units.map((unit) => (
-              <StyledTableRow key={unit.id} element={unit.element}>
-                <TableCell align="center" padding="checkbox">
-                  <Checkbox
-                    icon={<FavoriteBorder />}
-                    checkedIcon={<Favorite />}
-                  />
-                </TableCell>
-                <TableCell align="center" padding="checkbox">
-                  {unit.weapon}
-                </TableCell>
-                <TableCell align="center" padding="checkbox">
-                  {unit.rarity}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {unit.name}
-                </TableCell>
-                <TableCell align="right">{unit.element}</TableCell>
-              </StyledTableRow>
+              <Link key={unit.id} href="/units/[id]" as={`/units/${unit.id}`}>
+                <StyledTableRow element={unit.element}>
+                  <TableCell align="center" padding="checkbox">
+                    <Checkbox
+                      icon={<FavoriteBorder />}
+                      checkedIcon={<Favorite />}
+                    />
+                  </TableCell>
+                  <TableCell align="center" padding="checkbox">
+                    {unit.weapon}
+                  </TableCell>
+                  <TableCell align="center" padding="checkbox">
+                    {unit.rarity}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {unit.name}
+                  </TableCell>
+                  <TableCell align="right">{unit.element}</TableCell>
+                </StyledTableRow>
+              </Link>
             ))}
           </TableBody>
         </Table>
